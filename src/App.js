@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { createContext } from 'react';
+import styles from './App.module.css';
+import Index from './pages';
+import { useApp } from './data/hooks/useApp.page';
+
+export const AppContext = createContext({});
 
 function App() {
+
+ const useAppValues =  useApp();
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+        <header className={styles['header']}>
+          <h1>Treina<span>Music</span></h1>
+        </header>
+        <AppContext.Provider value={useAppValues}>
+          <Index />
+        </AppContext.Provider>
+       
+    </>
   );
 }
 
